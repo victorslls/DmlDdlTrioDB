@@ -1,0 +1,133 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema editora
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `editora` DEFAULT CHARACTER SET utf8 ;
+USE `editora` ;
+
+-- -----------------------------------------------------
+-- Table `editora`.`Autores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`Autores` (
+  `AutorID` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(255) NOT NULL,
+  `Biografia` TEXT NULL,
+  `Nacionalidade` VARCHAR(100) NULL,
+  `DataNascimento` DATE NULL,
+  PRIMARY KEY (`AutorID`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`Livros`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`Livros` (
+  `ISBN` VARCHAR(13) NOT NULL,
+  `Titulo` VARCHAR(255) NOT NULL,
+  `AutorID` INT NOT NULL,
+  `Editora` VARCHAR(255) NOT NULL,
+  `DataPublicacao` DATE NOT NULL,
+  `Genero` VARCHAR(100) NOT NULL,
+  `NumeroPaginas` INT NOT NULL,
+  `Descricao` TEXT NULL,
+  PRIMARY KEY (`ISBN`),
+  INDEX `fk_Livros_Autores_idx` (`AutorID` ASC),
+  CONSTRAINT `fk_Livros_Autores`
+    FOREIGN KEY (`AutorID`)
+    REFERENCES `editora`.`Autores` (`AutorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`Departamentos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`Departamentos` (
+  `idDepartamento` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Responsavel` VARCHAR(45) NOT NULL,
+  `Descricao` TEXT NULL,
+  PRIMARY KEY (`idDepartamento`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`Exemplares`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`Exemplares` (
+  `NumeroSerie` INT NOT NULL AUTO_INCREMENT,
+  `ISBN` VARCHAR(13) NOT NULL,
+  `Estado` VARCHAR(20) NOT NULL,
+  `Localizacao` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`NumeroSerie`),
+  INDEX `fk_Exemplares_Livros_idx` (`ISBN` ASC),
+  CONSTRAINT `fk_Exemplares_Livros`
+    FOREIGN KEY (`ISBN`)
+    REFERENCES `editora`.`Livros` (`ISBN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`AreasConhecimento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`AreasConhecimento` (
+  `CodigoArea` INT NOT NULL AUTO_INCREMENT,
+  `Descricao` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`CodigoArea`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`PalavrasChave`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`PalavrasChave` (
+  `CodigoPalavra` INT NOT NULL AUTO_INCREMENT,
+  `Descricao` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`CodigoPalavra`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`Funcionarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`Funcionarios` (
+  `idFuncionario` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(255) NOT NULL,
+  `Cargo` VARCHAR(100) NOT NULL,
+  `Telefone` VARCHAR(15) NOT NULL,
+  `Endereco` VARCHAR(255) NOT NULL,
+  `DepartamentoID` INT NOT NULL,
+  PRIMARY KEY (`idFuncionario`),
+  INDEX `fk_Funcionarios_Departamentos_idx` (`DepartamentoID` ASC),
+  CONSTRAINT `fk_Funcionarios_Departamentos`
+    FOREIGN KEY (`DepartamentoID`)
+    REFERENCES `editora`.`Departamentos` (`idDepartamento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `editora`.`PedidosVendas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `editora`.`PedidosVendas` (
+  `idPedido` INT NOT NULL AUTO_INCREMENT,
+  `ClienteInfo` VARCHAR(255) NOT NULL,
+  `DataTransacao` DATE NOT NULL,
+  `StatusPedido` VARCHAR(50) NOT NULL,
+  `DetalhesPagamento` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`idPedido`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Views
+-- -----------------------------------------------------
+CREATE VIEW `editora`.`LivrosAutores` AS
+SELECT L.Titulo, A.Nome 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Autores` A ON L.AutorID = A.AutorID;
+
+-- Adicione mais views conforme necessário...
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

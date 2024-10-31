@@ -1,0 +1,125 @@
+Livros:
+ISBN (identificador único)
+Título
+Autor
+Editora
+Data de publicação
+Gênero
+Número de páginas
+Descrição
+
+Autores:
+ID (identificador único)
+Nome
+Biografia
+Nacionalidade
+Data de nascimento
+Obras escritas
+Departamentos:
+Nome do departamento
+Responsável
+Descrição das atividades
+
+Exemplares:
+Número de série (identificador único)
+Estado (indisponível, reservado, danificado, etc.)
+Localização física na editora
+Áreas de Conhecimento:
+Código da área
+Descrição
+Palavras-chave:
+Código da palavra-chave
+Descrição
+
+Funcionários:
+Nome
+Cargo
+Telefone
+Endereço
+Departamento associado
+Pedidos e Vendas:
+Informações sobre clientes
+Datas das transações
+Status dos pedidos
+Detalhes de pagamento
+Diagramas
+Vou criar os diagramas de Entidade-Relacionamento (MER) e Relacional (MR) para você. Como não posso anexar imagens diretamente aqui, vou descrever como você pode criar esses diagramas:
+
+Modelo Entidade-Relacionamento (MER):
+Entidades: Livros, Autores, Departamentos, Exemplares, Áreas de Conhecimento, Palavras-chave, Funcionários, Pedidos e Vendas.
+
+Relacionamentos:
+Livros têm um ou mais Autores.
+Funcionários trabalham em um Departamento.
+Exemplares são versões físicas dos Livros.
+Livros são categorizados em Áreas de Conhecimento.
+Livros têm várias Palavras-chave.
+Pedidos e Vendas registram transações de Livros com Clientes.
+Modelo Relacional (MR):
+Tabelas correspondentes às entidades acima com chaves primárias e estrangeiras adequadas.
+Scripts SQL
+Aqui estão os scripts organizados conforme solicitado:
+
+Criação das Tabelas e Views (DDL):
+SQL
+
+CREATE TABLE Livros (
+    ISBN VARCHAR(13) PRIMARY KEY,
+    Titulo VARCHAR(255),
+    AutorID INT,
+    Editora VARCHAR(255),
+    DataPublicacao DATE,
+    Genero VARCHAR(100),
+    NumeroPaginas INT,
+    Descricao TEXT
+);
+
+CREATE TABLE Autores (
+    AutorID INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Biografia TEXT,
+    Nacionalidade VARCHAR(100),
+    DataNascimento DATE
+);
+
+-- Continue com as outras tabelas...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Scripts para Alterar Estruturas das Tabelas (DDL):
+SQL
+
+ALTER TABLE Livros ADD COLUMN Preco DECIMAL(10, 2);
+-- Adicione mais 9 scripts de alteração...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Script para Destruir Todas as Tabelas, Views, Procedimentos, Funções e Dependências (DDL):
+SQL
+
+DROP TABLE IF EXISTS Livros CASCADE;
+DROP TABLE IF EXISTS Autores CASCADE;
+-- Continue com as outras tabelas...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Script para Realizar Inserts (DML):
+SQL
+
+INSERT INTO Livros (ISBN, Titulo, AutorID, Editora, DataPublicacao, Genero, NumeroPaginas, Descricao) VALUES
+('978-3-16-148410-0', 'Livro Exemplo 1', 1, 'Editora A', '2023-01-01', 'Ficção', 300, 'Descrição do Livro Exemplo 1'),
+-- Adicione mais 9 registros para cada tabela...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Scripts para Deletar ou Atualizar Dados (DML):
+SQL
+
+UPDATE Livros SET Titulo = 'Novo Titulo' WHERE ISBN = '978-3-16-148410-0';
+DELETE FROM Livros WHERE ISBN = '978-3-16-148410-0';
+-- Adicione mais 18 scripts de atualização ou deleção...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Consultas/Relatórios Importantes (DQL):
+SQL
+
+SELECT L.Titulo, A.Nome FROM Livros L JOIN Autores A ON L.AutorID = A.AutorID;
+-- Adicione mais 19 consultas usando JOINs e subselects...
+Código gerado por IA. Reveja e utilize cuidadosamente. Mais informações nas FAQ.
+Script para Criar Views (DDL):
+SQL
+
+CREATE VIEW LivrosAutores AS
+SELECT L.Titulo, A.Nome FROM Livros L JOIN Autores A ON L.AutorID = A.AutorID;
+-- Adicione mais 9 views...

@@ -1,0 +1,407 @@
+-- Scripts para Alterar Estruturas das Tabelas (DDL)
+
+ALTER TABLE `editora`.`Livros` ADD COLUMN `Preco` DECIMAL(10, 2);
+-- Adicionando coluna Preco na tabela Livros
+ALTER TABLE `editora`.`Livros` ADD COLUMN `Preco` DECIMAL(10, 2);
+
+-- Adicionando coluna Website na tabela Autores
+ALTER TABLE `editora`.`Autores` ADD COLUMN `Website` VARCHAR(255);
+
+-- Adicionando coluna Telefone na tabela Departamentos
+ALTER TABLE `editora`.`Departamentos` ADD COLUMN `Telefone` VARCHAR(15);
+
+-- Adicionando coluna DataAquisicao na tabela Exemplares
+ALTER TABLE `editora`.`Exemplares` ADD COLUMN `DataAquisicao` DATE;
+
+-- Adicionando coluna CodigoPai na tabela AreasConhecimento
+ALTER TABLE `editora`.`AreasConhecimento` ADD COLUMN `CodigoPai` INT;
+
+-- Adicionando coluna Categoria na tabela PalavrasChave
+ALTER TABLE `editora`.`PalavrasChave` ADD COLUMN `Categoria` VARCHAR(100);
+
+-- Adicionando coluna Email na tabela Funcionarios
+ALTER TABLE `editora`.`Funcionarios` ADD COLUMN `Email` VARCHAR(255);
+
+-- Adicionando coluna MetodoPagamento na tabela PedidosVendas
+ALTER TABLE `editora`.`PedidosVendas` ADD COLUMN `MetodoPagamento` VARCHAR(50);
+
+-- Adicionando coluna Idioma na tabela Livros
+ALTER TABLE `editora`.`Livros` ADD COLUMN `Idioma` VARCHAR(50);
+
+-- Adicionando coluna Premios na tabela Autores
+ALTER TABLE `editora`.`Autores` ADD COLUMN `Premios` TEXT;
+
+
+-- não quero apagar as tabelas, pela fé
+
+DROP TABLE IF EXISTS `editora`.`Livros` CASCADE;
+DROP TABLE IF EXISTS `editora`.`Autores` CASCADE;
+-- Continue com as outras tabelas...
+
+--Inserção de Dados (DML)
+
+INSERT INTO `editora`.`Livros` (ISBN, Titulo, AutorID, Editora, DataPublicacao, Genero, NumeroPaginas, Descricao) VALUES
+('978-3-16-148410-0', 'Livro Exemplo 1', 1, 'Editora A', '2023-01-01', 'Ficção', 300, 'Descrição do Livro Exemplo 1'),
+-- Inserindo mais 9 dados na tabela Livros
+INSERT INTO `editora`.`Livros` (ISBN, Titulo, AutorID, Editora, DataPublicacao, Genero, NumeroPaginas, Descricao) VALUES
+('978-3-16-148410-1', 'Livro Exemplo 2', 2, 'Editora B', '2023-02-01', 'Não-Ficção', 250, 'Descrição do Livro Exemplo 2'),
+('978-3-16-148410-2', 'Livro Exemplo 3', 3, 'Editora C', '2023-03-01', 'Romance', 200, 'Descrição do Livro Exemplo 3'),
+('978-3-16-148410-3', 'Livro Exemplo 4', 4, 'Editora D', '2023-04-01', 'Aventura', 320, 'Descrição do Livro Exemplo 4'),
+('978-3-16-148410-4', 'Livro Exemplo 5', 5, 'Editora E', '2023-05-01', 'Drama', 280, 'Descrição do Livro Exemplo 5'),
+('978-3-16-148410-5', 'Livro Exemplo 6', 6, 'Editora F', '2023-06-01', 'Terror', 350, 'Descrição do Livro Exemplo 6'),
+('978-3-16-148410-6', 'Livro Exemplo 7', 7, 'Editora G', '2023-07-01', 'Fantasia', 400, 'Descrição do Livro Exemplo 7'),
+('978-3-16-148410-7', 'Livro Exemplo 8', 8, 'Editora H', '2023-08-01', 'Suspense', 310, 'Descrição do Livro Exemplo 8'),
+('978-3-16-148410-8', 'Livro Exemplo 9', 9, 'Editora I', '2023-09-01', 'Biografia', 290, 'Descrição do Livro Exemplo 9'),
+('978-3-16-148410-9', 'Livro Exemplo 10', 10, 'Editora J', '2023-10-01', 'História', 270, 'Descrição do Livro Exemplo 10');
+
+-- Inserindo mais 9 dados na tabela Autores
+INSERT INTO `editora`.`Autores` (Nome, Biografia, Nacionalidade, DataNascimento) VALUES
+('Autor 4', 'Biografia do Autor 4', 'Nacionalidade 4', '1971-04-04'),
+('Autor 5', 'Biografia do Autor 5', 'Nacionalidade 5', '1981-05-05'),
+('Autor 6', 'Biografia do Autor 6', 'Nacionalidade 6', '1991-06-06'),
+('Autor 7', 'Biografia do Autor 7', 'Nacionalidade 7', '1972-07-07'),
+('Autor 8', 'Biografia do Autor 8', 'Nacionalidade 8', '1982-08-08'),
+('Autor 9', 'Biografia do Autor 9', 'Nacionalidade 9', '1992-09-09'),
+('Autor 10', 'Biografia do Autor 10', 'Nacionalidade 10', '1973-10-10'),
+('Autor 11', 'Biografia do Autor 11', 'Nacionalidade 11', '1983-11-11'),
+('Autor 12', 'Biografia do Autor 12', 'Nacionalidade 12', '1993-12-12');
+
+-- Inserindo mais 9 dados na tabela Departamentos
+INSERT INTO `editora`.`Departamentos` (Nome, Responsavel, Descricao) VALUES
+('Departamento 4', 'Responsável 4', 'Descrição do Departamento 4'),
+('Departamento 5', 'Responsável 5', 'Descrição do Departamento 5'),
+('Departamento 6', 'Responsável 6', 'Descrição do Departamento 6'),
+('Departamento 7', 'Responsável 7', 'Descrição do Departamento 7'),
+('Departamento 8', 'Responsável 8', 'Descrição do Departamento 8'),
+('Departamento 9', 'Responsável 9', 'Descrição do Departamento 9'),
+('Departamento 10', 'Responsável 10', 'Descrição do Departamento 10'),
+('Departamento 11', 'Responsável 11', 'Descrição do Departamento 11'),
+('Departamento 12', 'Responsável 12', 'Descrição do Departamento 12');
+
+-- Inserindo mais 9 dados na tabela Exemplares
+INSERT INTO `editora`.`Exemplares` (ISBN, Estado, Localizacao) VALUES
+('978-3-16-148410-3', 'Disponível', 'Estante D4'),
+('978-3-16-148410-4', 'Reservado', 'Estante E5'),
+('978-3-16-148410-5', 'Danificado', 'Estante F6'),
+('978-3-16-148410-6', 'Disponível', 'Estante G7'),
+('978-3-16-148410-7', 'Reservado', 'Estante H8'),
+('978-3-16-148410-8', 'Danificado', 'Estante I9'),
+('978-3-16-148410-9', 'Disponível', 'Estante J10'),
+('978-3-16-148411-0', 'Reservado', 'Estante K11'),
+('978-3-16-148411-1', 'Danificado', 'Estante L12');
+
+-- Inserindo mais 9 dados na tabela AreasConhecimento
+INSERT INTO `editora`.`AreasConhecimento` (Descricao) VALUES
+('Área de Conhecimento 4'),
+('Área de Conhecimento 5'),
+('Área de Conhecimento 6'),
+('Área de Conhecimento 7'),
+('Área de Conhecimento 8'),
+('Área de Conhecimento 9'),
+('Área de Conhecimento 10'),
+('Área de Conhecimento 11'),
+('Área de Conhecimento 12');
+
+-- Inserindo mais 9 dados na tabela PalavrasChave
+INSERT INTO `editora`.`PalavrasChave` (Descricao) VALUES
+('Palavra-chave 4'),
+('Palavra-chave 5'),
+('Palavra-chave 6'),
+('Palavra-chave 7'),
+('Palavra-chave 8'),
+('Palavra-chave 9'),
+('Palavra-chave 10'),
+('Palavra-chave 11'),
+('Palavra-chave 12');
+
+-- Inserindo mais 9 dados na tabela Funcionarios
+INSERT INTO `editora`.`Funcionarios` (Nome, Cargo, Telefone, Endereco, DepartamentoID) VALUES
+('Funcionário 4', 'Cargo 4', '234567890', 'Endereço 4', 4),
+('Funcionário 5', 'Cargo 5', '345678901', 'Endereço 5', 5),
+('Funcionário 6', 'Cargo 6', '456789012', 'Endereço 6', 6),
+('Funcionário 7', 'Cargo 7', '567890123', 'Endereço 7', 7),
+('Funcionário 8', 'Cargo 8', '678901234', 'Endereço 8', 8),
+('Funcionário 9', 'Cargo 9', '789012345', 'Endereço 9', 9),
+('Funcionário 10', 'Cargo 10', '890123456', 'Endereço 10', 10),
+('Funcionário 11', 'Cargo 11', '901234567', 'Endereço 11', 11),
+('Funcionário 12', 'Cargo 12', '012345678', 'Endereço 12', 12);
+
+-- Inserindo mais 9 dados na tabela PedidosVendas
+INSERT INTO `editora`.`PedidosVendas` (ClienteInfo, DataTransacao, StatusPedido, DetalhesPagamento) VALUES
+('Cliente 4', '2023-04-01', 'Concluído', 'Detalhes de Pagamento 4'),
+('Cliente 5', '2023-05-01', 'Pendente', 'Detalhes de Pagamento 5'),
+('Cliente 6', '2023-06-01', 'Cancelado', 'Detalhes de Pagamento 6'),
+('Cliente 7', '2023-07-01', 'Concluído', 'Detalhes de Pagamento 7'),
+('Cliente 8', '2023-08-01', 'Pendente', 'Detalhes de Pagamento 8'),
+('Cliente 9', '2023-09-01', 'Cancelado', 'Detalhes de Pagamento 9'),
+('Cliente 10', '2023-10-01', 'Concluído', 'Detalhes de Pagamento 10'),
+('Cliente 11', '2023-11-01', 'Pendente', 'Detalhes de Pagamento 11'),
+('Cliente 12', '2023-12-01', 'Cancelado', 'Detalhes de Pagamento 12');
+
+
+
+--Scripts para Atualizar ou Deletar Dados (DML)
+
+UPDATE `editora`.`Livros` SET Titulo = 'Novo Titulo' WHERE ISBN = '978-3-16-148410-0';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-0';
+-- Atualizações na tabela Livros
+UPDATE `editora`.`Livros` SET Titulo = 'Novo Titulo 2' WHERE ISBN = '978-3-16-148410-1';
+UPDATE `editora`.`Livros` SET Genero = 'Novo Genero' WHERE ISBN = '978-3-16-148410-2';
+UPDATE `editora`.`Livros` SET NumeroPaginas = 350 WHERE ISBN = '978-3-16-148410-3';
+UPDATE `editora`.`Livros` SET Editora = 'Nova Editora' WHERE ISBN = '978-3-16-148410-4';
+UPDATE `editora`.`Livros` SET DataPublicacao = '2024-01-01' WHERE ISBN = '978-3-16-148410-5';
+UPDATE `editora`.`Livros` SET Descricao = 'Nova Descrição' WHERE ISBN = '978-3-16-148410-6';
+UPDATE `editora`.`Livros` SET Preco = 59.99 WHERE ISBN = '978-3-16-148410-7';
+UPDATE `editora`.`Livros` SET Idioma = 'Português' WHERE ISBN = '978-3-16-148410-8';
+UPDATE `editora`.`Livros` SET Titulo = 'Novo Titulo 3' WHERE ISBN = '978-3-16-148410-9';
+
+-- Deleções na tabela Livros
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-1';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-2';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-3';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-4';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-5';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-6';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-7';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-8';
+DELETE FROM `editora`.`Livros` WHERE ISBN = '978-3-16-148410-9';
+
+-- Atualizações na tabela Autores
+UPDATE `editora`.`Autores` SET Nome = 'Novo Nome 1' WHERE AutorID = 1;
+UPDATE `editora`.`Autores` SET Nacionalidade = 'Nova Nacionalidade' WHERE AutorID = 2;
+UPDATE `editora`.`Autores` SET DataNascimento = '1980-01-01' WHERE AutorID = 3;
+UPDATE `editora`.`Autores` SET Biografia = 'Nova Biografia' WHERE AutorID = 4;
+UPDATE `editora`.`Autores` SET Website = 'www.novoautor.com' WHERE AutorID = 5;
+
+-- Deleções na tabela Autores
+DELETE FROM `editora`.`Autores` WHERE AutorID = 1;
+DELETE FROM `editora`.`Autores` WHERE AutorID = 2;
+DELETE FROM `editora`.`Autores` WHERE AutorID = 3;
+DELETE FROM `editora`.`Autores` WHERE AutorID = 4;
+DELETE FROM `editora`.`Autores` WHERE AutorID = 5;
+
+-- Atualizações na tabela Departamentos
+UPDATE `editora`.`Departamentos` SET Nome = 'Novo Departamento 1' WHERE idDepartamento = 1;
+UPDATE `editora`.`Departamentos` SET Responsavel = 'Novo Responsável' WHERE idDepartamento = 2;
+UPDATE `editora`.`Departamentos` SET Descricao = 'Nova Descrição' WHERE idDepartamento = 3;
+UPDATE `editora`.`Departamentos` SET Telefone = '123456789' WHERE idDepartamento = 4;
+
+-- Deleções na tabela Departamentos
+DELETE FROM `editora`.`Departamentos` WHERE idDepartamento = 1;
+DELETE FROM `editora`.`Departamentos` WHERE idDepartamento = 2;
+DELETE FROM `editora`.`Departamentos` WHERE idDepartamento = 3;
+DELETE FROM `editora`.`Departamentos` WHERE idDepartamento = 4;
+
+-- Atualizações na tabela Exemplares
+UPDATE `editora`.`Exemplares` SET Estado = 'Novo Estado' WHERE NumeroSerie = 1;
+UPDATE `editora`.`Exemplares` SET Localizacao = 'Nova Localização' WHERE NumeroSerie = 2;
+UPDATE `editora`.`Exemplares` SET DataAquisicao = '2024-01-01' WHERE NumeroSerie = 3;
+
+-- Deleções na tabela Exemplares
+DELETE FROM `editora`.`Exemplares` WHERE NumeroSerie = 1;
+DELETE FROM `editora`.`Exemplares` WHERE NumeroSerie = 2;
+DELETE FROM `editora`.`Exemplares` WHERE NumeroSerie = 3;
+
+-- Atualizações na tabela AreasConhecimento
+UPDATE `editora`.`AreasConhecimento` SET Descricao = 'Nova Descrição' WHERE CodigoArea = 1;
+UPDATE `editora`.`AreasConhecimento` SET CodigoPai = 2 WHERE CodigoArea = 2;
+
+-- Deleções na tabela AreasConhecimento
+DELETE FROM `editora`.`AreasConhecimento` WHERE CodigoArea = 1;
+DELETE FROM `editora`.`AreasConhecimento` WHERE CodigoArea = 2;
+
+-- Atualizações na tabela PalavrasChave
+UPDATE `editora`.`PalavrasChave` SET Descricao = 'Nova Descrição' WHERE CodigoPalavra = 1;
+UPDATE `editora`.`PalavrasChave` SET Categoria = 'Nova Categoria' WHERE CodigoPalavra = 2;
+
+-- Deleções na tabela PalavrasChave
+DELETE FROM `editora`.`PalavrasChave` WHERE CodigoPalavra = 1;
+DELETE FROM `editora`.`PalavrasChave` WHERE CodigoPalavra = 2;
+
+-- Atualizações na tabela Funcionarios
+UPDATE `editora`.`Funcionarios` SET Nome = 'Novo Nome' WHERE idFuncionario = 1;
+UPDATE `editora`.`Funcionarios` SET Cargo = 'Novo Cargo' WHERE idFuncionario = 2;
+UPDATE `editora`.`Funcionarios` SET Telefone = '987654321' WHERE idFuncionario = 3;
+UPDATE `editora`.`Funcionarios` SET Endereco = 'Novo Endereço' WHERE idFuncionario = 4;
+UPDATE `editora`.`Funcionarios` SET Email = 'novoemail@empresa.com' WHERE idFuncionario = 5;
+
+-- Deleções na tabela Funcionarios
+DELETE FROM `editora`.`Funcionarios` WHERE idFuncionario = 1;
+DELETE FROM `editora`.`Funcionarios` WHERE idFuncionario = 2;
+DELETE FROM `editora`.`Funcionarios` WHERE idFuncionario = 3;
+DELETE FROM `editora`.`Funcionarios` WHERE idFuncionario = 4;
+DELETE FROM `editora`.`Funcionarios` WHERE idFuncionario = 5;
+
+-- Atualizações na tabela PedidosVendas
+UPDATE `editora`.`PedidosVendas` SET StatusPedido = 'Novo Status' WHERE idPedido = 1;
+UPDATE `editora`.`PedidosVendas` SET MetodoPagamento = 'Novo Método' WHERE idPedido = 2;
+
+-- Deleções na tabela PedidosVendas
+DELETE FROM `editora`.`PedidosVendas` WHERE idPedido = 1;
+DELETE FROM `editora`.`PedidosVendas` WHERE idPedido = 2;
+
+
+
+--Consultas/Relatórios Importantes (DQL)
+
+SELECT L.Titulo, A.Nome 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Autores` A ON L.AutorID = A.AutorID;
+-
+
+-- 1. Listar todos os livros e seus autores
+SELECT L.Titulo, A.Nome 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Autores` A ON L.AutorID = A.AutorID;
+
+-- 2. Listar todos os livros e seus estados de exemplares
+SELECT L.Titulo, E.Estado 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Exemplares` E ON L.ISBN = E.ISBN;
+
+-- 3. Listar todos os funcionários e seus departamentos
+SELECT F.Nome, D.Nome AS Departamento 
+FROM `editora`.`Funcionarios` F 
+JOIN `editora`.`Departamentos` D ON F.DepartamentoID = D.idDepartamento;
+
+-- 4. Listar todos os pedidos concluídos
+SELECT P.ClienteInfo, P.StatusPedido 
+FROM `editora`.`PedidosVendas` P 
+WHERE P.StatusPedido = 'Concluído';
+
+-- 5. Contar o número de livros escritos por cada autor
+SELECT A.Nome, COUNT(L.ISBN) AS LivrosEscritos 
+FROM `editora`.`Autores` A 
+JOIN `editora`.`Livros` L ON A.AutorID = L.AutorID 
+GROUP BY A.Nome;
+
+-- 6. Contar o número de funcionários em cada departamento
+SELECT D.Nome, COUNT(F.idFuncionario) AS NumeroFuncionarios 
+FROM `editora`.`Departamentos` D 
+JOIN `editora`.`Funcionarios` F ON D.idDepartamento = F.DepartamentoID 
+GROUP BY D.Nome;
+
+-- 7. Listar todos os livros e suas áreas de conhecimento
+SELECT L.Titulo, AC.Descricao AS AreaConhecimento 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`AreasConhecimento` AC ON L.Genero = AC.Descricao;
+
+-- 8. Listar todos os livros e suas palavras-chave
+SELECT L.Titulo, PC.Descricao AS PalavraChave 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`PalavrasChave` PC ON L.Descricao LIKE CONCAT('%', PC.Descricao, '%');
+
+-- 9. Listar clientes e o total gasto em pedidos
+SELECT P.ClienteInfo, SUM(P.DetalhesPagamento) AS TotalGasto 
+FROM `editora`.`PedidosVendas` P 
+GROUP BY P.ClienteInfo;
+
+-- 10. Listar livros com preço acima de 50
+SELECT L.Titulo, L.Preco 
+FROM `editora`.`Livros` L 
+WHERE L.Preco > 50;
+
+-- 11. Listar livros publicados após 2020
+SELECT L.Titulo, L.DataPublicacao 
+FROM `editora`.`Livros` L 
+WHERE L.DataPublicacao > '2020-01-01';
+
+-- 12. Listar autores que nasceram após 1980
+SELECT A.Nome, A.DataNascimento 
+FROM `editora`.`Autores` A 
+WHERE A.DataNascimento > '1980-01-01';
+
+-- 13. Listar departamentos com mais de 5 funcionários
+SELECT D.Nome, COUNT(F.idFuncionario) AS NumeroFuncionarios 
+FROM `editora`.`Departamentos` D 
+JOIN `editora`.`Funcionarios` F ON D.idDepartamento = F.DepartamentoID 
+GROUP BY D.Nome 
+HAVING COUNT(F.idFuncionario) > 5;
+
+-- 14. Listar exemplares disponíveis
+SELECT E.NumeroSerie, E.Estado 
+FROM `editora`.`Exemplares` E 
+WHERE E.Estado = 'Disponível';
+
+-- 15. Listar livros e suas editoras
+SELECT L.Titulo, L.Editora 
+FROM `editora`.`Livros` L;
+
+-- 16. Listar funcionários e seus cargos
+SELECT F.Nome, F.Cargo 
+FROM `editora`.`Funcionarios` F;
+
+-- 17. Listar pedidos e suas datas de transação
+SELECT P.ClienteInfo, P.DataTransacao 
+FROM `editora`.`PedidosVendas` P;
+
+-- 18. Listar livros e seus gêneros
+SELECT L.Titulo, L.Genero 
+FROM `editora`.`Livros` L;
+
+-- 19. Listar autores e suas nacionalidades
+SELECT A.Nome, A.Nacionalidade 
+FROM `editora`.`Autores` A;
+
+-- 20. Listar livros e suas descrições
+SELECT L.Titulo, L.Descricao 
+FROM `editora`.`Livros` L;
+
+
+
+--Script para Criar Views (DDL
+CREATE VIEW `editora`.`LivrosAutores` AS
+SELECT L.Titulo, A.Nome 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Autores` A ON L.AutorID = A.AutorID;
+
+
+CREATE VIEW `editora`.`LivrosAutores` AS
+SELECT L.Titulo, A.Nome 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Autores` A ON L.AutorID = A.AutorID;
+
+CREATE VIEW `editora`.`LivrosExemplares` AS
+SELECT L.Titulo, E.Estado 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`Exemplares` E ON L.ISBN = E.ISBN;
+
+CREATE VIEW `editora`.`FuncionariosDepartamentos` AS
+SELECT F.Nome, D.Nome AS Departamento 
+FROM `editora`.`Funcionarios` F 
+JOIN `editora`.`Departamentos` D ON F.DepartamentoID = D.idDepartamento;
+
+CREATE VIEW `editora`.`PedidosConcluidos` AS
+SELECT P.ClienteInfo, P.StatusPedido 
+FROM `editora`.`PedidosVendas` P 
+WHERE P.StatusPedido = 'Concluído';
+
+CREATE VIEW `editora`.`AutoresLivros` AS
+SELECT A.Nome, COUNT(L.ISBN) AS LivrosEscritos 
+FROM `editora`.`Autores` A 
+JOIN `editora`.`Livros` L ON A.AutorID = L.AutorID 
+GROUP BY A.Nome;
+
+CREATE VIEW `editora`.`LivrosAreasConhecimento` AS
+SELECT L.Titulo, AC.Descricao AS AreaConhecimento 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`AreasConhecimento` AC ON L.Genero = AC.Descricao;
+
+CREATE VIEW `editora`.`LivrosPalavrasChave` AS
+SELECT L.Titulo, PC.Descricao AS PalavraChave 
+FROM `editora`.`Livros` L 
+JOIN `editora`.`PalavrasChave` PC ON L.Descricao LIKE CONCAT('%', PC.Descricao, '%');
+
+CREATE VIEW `editora`.`FuncionariosEmails` AS
+SELECT F.Nome, F.Email 
+FROM `editora`.`Funcionarios` F;
+
+CREATE VIEW `editora`.`PedidosClientes` AS
+SELECT P.ClienteInfo, SUM(P.DetalhesPagamento) AS TotalGasto 
+FROM `editora`.`PedidosVendas` P 
+GROUP BY P.ClienteInfo;
+
+CREATE VIEW `editora`.`LivrosPrecos` AS
+SELECT L.Titulo, L.Preco 
+FROM `editora`.`Livros` L 
+WHERE L.Preco > 50;
